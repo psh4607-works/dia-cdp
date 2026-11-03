@@ -1,0 +1,15 @@
+{
+  "name": "dia-cdp",
+  "owner": {
+    "name": "Seongho",
+    "url": "https://github.com/psh4607"
+  },
+  "description": "Claude Code marketplace for the Dia CDP plugin.",
+  "plugins": [
+    {
+      "name": "dia-cdp",
+      "source": "./claude/dia-cdp",
+      "category": "Developer Tools"
+    }
+  ]
+}

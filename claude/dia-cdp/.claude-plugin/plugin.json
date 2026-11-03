@@ -1,0 +1,21 @@
+{
+  "name": "dia-cdp",
+  "displayName": "Dia CDP",
+  "version": "0.8.0",
+  "description": "Dia browser extension bridge, CDP tools, and Codex skill for inspecting the user's Dia session.",
+  "author": {
+    "name": "Seongho",
+    "url": "https://github.com/psh4607"
+  },
+  "homepage": "https://github.com/psh4607/dia-cdp",
+  "repository": "https://github.com/psh4607/dia-cdp",
+  "license": "MIT",
+  "keywords": [
+    "dia",
+    "cdp",
+    "chrome-devtools-protocol",
+    "browser",
+    "codex",
+    "skills"
+  ]
+}

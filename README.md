@@ -30,6 +30,38 @@ extension bridge is a separate, one-time local installation because Dia must
 explicitly load the unpacked extension. Follow the next section after installing
 the plugin.
 
+## Claude Code Plugin Install
+
+Add this repository as a Claude Code marketplace, then install the plugin from
+a Claude Code session:
+
+```text
+/plugin marketplace add psh4607-works/dia-cdp
+/plugin install dia-cdp@dia-cdp
+```
+
+Claude Code v2.1.292 or later can add the marketplace and install in one step:
+
+```text
+/plugin install dia-cdp --marketplace psh4607-works/dia-cdp
+```
+
+From a shell, use `claude plugin marketplace add psh4607-works/dia-cdp` and
+`claude plugin install dia-cdp@dia-cdp`. Start a new session or run
+`/reload-plugins`, and the skill is available as `dia-cdp:dia-cdp`.
+
+The Codex plugin at the repository root stays the source of truth.
+`claude/dia-cdp/` holds only a Claude manifest and relative symlinks to the root
+`skills/dia-cdp`, `bin/*`, `src/`, and `extension/`. When Claude Code copies the
+plugin into its cache, it replaces each symlink with the linked content, so the
+skill-local `scripts/*` wrappers run the CLI bundled in the installed copy.
+Because the plugin has a top-level `bin/`, its commands are also on the Bash
+tool's `PATH` while the plugin is enabled. claude.ai and Cowork do not install
+plugins with a top-level `bin/`, so use the plugin from Claude Code on macOS.
+
+The Dia extension bridge still needs the one-time installation described in the
+next section.
+
 ## Dia Extension Bridge
 
 The extension bridge manages tabs, inspects pages, interacts with elements, and
@@ -76,7 +108,7 @@ require an explicit `--allow-cdp` invocation.
 
 ### Quick start
 
-1. Install the Codex plugin as shown above.
+1. Install the Codex or Claude Code plugin as shown above.
 2. Clone this repository and install the per-user extension and relay payloads:
 
    ```bash
@@ -427,6 +459,8 @@ original `chrome-cdp` script.
 
 - `.agents/plugins/marketplace.json` exposes this repository as a Codex plugin marketplace.
 - `.codex-plugin/plugin.json` describes the `dia-cdp` plugin.
+- `.claude-plugin/marketplace.json` exposes this repository as a Claude Code plugin marketplace.
+- `claude/dia-cdp/` is the Claude Code plugin; it links to the root skill and runtime instead of copying them.
 - `extension/` contains the extension-first Dia bridge.
 - `bin/dia-automation` manages the isolated automation-only Dia profile.
 - `skills/dia-cdp/SKILL.md` tells Codex when to prefer Dia CDP over Chrome CDP.
